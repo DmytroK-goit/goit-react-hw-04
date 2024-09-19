@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const SearchBar = ({ onSubmit }) => {
-  const [inputValue, setInputValue] = useState(""); // Локальний стан для введення
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
     setInputValue(e.target.value);

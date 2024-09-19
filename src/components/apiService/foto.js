@@ -8,7 +8,7 @@ axios.defaults.params = {
 };
 const getPhotos = async (searchValue) => {
   const { data } = await axios.get(`search/photos?query=${searchValue}>`);
-  console.log(data);
+  // console.log(data);
   return data;
 };
 

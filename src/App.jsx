@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import getPhotos from "./components/apiService/foto";
 import SearchBar from "./components/SearchBar/SearchBar";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
 import "./App.css";
 
 function App() {
@@ -17,18 +18,18 @@ function App() {
     const getData = async () => {
       try {
         const data = await getPhotos(searchValue, 1);
-        setPhotos(data.photos);
+        setPhotos(data.results);
       } catch (error) {
         setError(error.message);
       }
     };
     getData();
   }, [searchValue]);
-  // getPhotos();
 
   return (
     <>
       <SearchBar onSubmit={onSubmit} />
+      <ImageGallery photos={photos} />
     </>
   );
 }
