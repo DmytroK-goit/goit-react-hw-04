@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import getPhotos from "./components/apiService/foto";
+import SearchBar from "./components/SearchBar/SearchBar";
 import "./App.css";
 
 function App() {
@@ -23,14 +24,11 @@ function App() {
     };
     getData();
   }, [searchValue]);
-  getPhotos();
+  // getPhotos();
 
   return (
     <>
-      <Text textAlign="center">Let`s begin search 🔎</Text>
-      <Form onSubmit={onSubmit} />
-      <PhotosGallery photos={photos} />
-      {error && <Text textAlign="center">{error}</Text>}
+      <SearchBar onSubmit={onSubmit} />
     </>
   );
 }

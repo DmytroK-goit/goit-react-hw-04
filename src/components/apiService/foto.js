@@ -6,10 +6,10 @@ axios.defaults.headers.common["Authorization"] = `Client-ID ${API_KEY}`;
 axios.defaults.params = {
   per_page: 20,
 };
-const getPhotos = async (query, page) => {
-  const response = await axios.get(`search/photos?query=cat>`);
-  console.log(response.data);
-  return response;
+const getPhotos = async (searchValue) => {
+  const { data } = await axios.get(`search/photos?query=${searchValue}>`);
+  console.log(data);
+  return data;
 };
 
 export default getPhotos;
