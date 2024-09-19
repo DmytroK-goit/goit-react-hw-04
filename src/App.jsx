@@ -11,7 +11,11 @@ function App() {
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(false);
   const onSubmit = (value) => {
-    setSearchValue(value);
+    if (value !== searchValue) {
+      setSearchValue(value);
+      setPhotos([]); // Очищуємо галерею при новому запиті
+      setCount(1);
+    }
   };
 
   useEffect(() => {});
