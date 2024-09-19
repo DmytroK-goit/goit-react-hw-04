@@ -1,20 +1,16 @@
+import ImageCard from "../ImageCard/ImageCard";
+
 const ImageGallery = ({ photos }) => {
   return (
-    <div>
+    <ul>
       {photos.length > 0 ? (
-        <div>
-          {photos.map((photo) => (
-            <img
-              key={photo.id}
-              src={photo.urls.small}
-              alt={photo.alt_description}
-            />
-          ))}
-        </div>
+        <li>
+          <ImageCard photos={photos} />
+        </li>
       ) : (
         <p>Немає результатів для показу.</p>
       )}
-    </div>
+    </ul>
   );
 };
 

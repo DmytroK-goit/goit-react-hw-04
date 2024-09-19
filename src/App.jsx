@@ -8,6 +8,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState(null);
+  const [count, setCount] = useState(1);
   const onSubmit = (value) => {
     setSearchValue(value);
   };
