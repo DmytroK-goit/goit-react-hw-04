@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Modal from "react-modal"; // Переконайся, що імпортуєш компонент Modal
 
-const ImageModal = () => {
+const ImageModal = ({ isOpen, onClose, imageUrl }) => {
   const customStyles = {
     content: {
       top: "50%",
@@ -9,46 +10,26 @@ const ImageModal = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      backgroundColor: "#333",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.75)",
     },
   };
 
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
-    <div>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
-    </div>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      style={customStyles}
+      contentLabel="Модальне вікно з зображенням"
+    >
+      <button onClick={onClose}>Закрити</button>
+      {imageUrl && (
+        <img src={imageUrl} alt="Велике зображення" style={{ width: "100%" }} />
+      )}
+    </Modal>
   );
 };
+
 export default ImageModal;

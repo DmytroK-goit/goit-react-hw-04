@@ -13,6 +13,8 @@ function App() {
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const onSubmit = (value) => {
     if (value !== searchValue) {
@@ -44,10 +46,20 @@ function App() {
     getData();
   }, [searchValue, count]);
 
+  const openModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImage("");
+  };
+
   return (
     <>
       <SearchBar onSubmit={onSubmit} />
-      <ImageGallery photos={photos} ImageModal={ImageModal} />
+      <ImageGallery photos={photos} onImageClick={openModal} />
       {loading && (
         <p>
           <LoadingSpinner />
@@ -58,6 +70,11 @@ function App() {
           Завантажити ще
         </button>
       )}
+      <ImageModal
+        isOpen={modalIsOpen}
+        onClose={closeModal}
+        imageUrl={selectedImage}
+      />
     </>
   );
 }
