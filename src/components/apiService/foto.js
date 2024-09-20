@@ -10,7 +10,7 @@ const getPhotos = async (searchValue, page) => {
   const { data } = await axios.get(
     `search/photos?query=${searchValue}&page=${page}>`
   );
-  // console.log(data);
+
   return data;
 };
 

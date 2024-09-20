@@ -1,3 +1,4 @@
+import { GrFormSearch } from "react-icons/gr";
 const Form = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -7,7 +8,9 @@ const Form = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button type="submit"></button>
+      <button type="submit">
+        <GrFormSearch />
+      </button>
 
       <input
         placeholder="What do you want to write?"

@@ -1,0 +1,24 @@
+.form {
+  margin: 0;
+  display: flex;
+  height: 70px;
+  width: 100vw;
+  background-color: blue;
+}
+.form_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto auto;
+  height: 40px;
+  width: 300px;
+  background-color: white;
+}
+.input {
+  height: 90%;
+  width: 250px;
+  border: none;
+}
+.btn {
+  border: none;
+}

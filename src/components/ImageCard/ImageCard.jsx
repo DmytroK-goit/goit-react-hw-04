@@ -1,16 +1,20 @@
-const ImageCard = ({ photos }) => {
+const ImageCard = ({ photos, ImageModal }) => {
+  console.log(photos);
+
   return (
-    <div>
+    <>
       {photos.map((photo) => (
-        <img
-          key={photo.id}
-          src={photo.urls.small}
-          alt={photo.alt_description}
-          width={300}
-          height={300}
-        />
+        <li onClick={ImageModal}>
+          <img
+            key={photo.id}
+            src={photo.urls.small_s3}
+            alt={photo.alt_description}
+            width={300}
+            height={300}
+          />
+        </li>
       ))}
-    </div>
+    </>
   );
 };
 

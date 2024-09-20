@@ -1,12 +1,11 @@
 import ImageCard from "../ImageCard/ImageCard";
+import s from "./ImageGallery.module.css";
 
-const ImageGallery = ({ photos }) => {
+const ImageGallery = ({ photos, ImageModal }) => {
   return (
-    <ul>
+    <ul className={s.ul}>
       {photos.length > 0 ? (
-        <li>
-          <ImageCard photos={photos} />
-        </li>
+        <ImageCard photos={photos} ImageModal={ImageModal} />
       ) : (
         <p>Немає результатів для показу.</p>
       )}
