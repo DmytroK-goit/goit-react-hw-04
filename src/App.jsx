@@ -15,22 +15,30 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+  const [totalPage, setTotalPage] = useState(0);
 
   const onSubmit = (value) => {
     if (value !== searchValue) {
       setSearchValue(value);
       setPhotos([]);
       setCount(1);
+      setTotalPage(0);
     }
   };
 
   useEffect(() => {
-    if (!searchValue) return;
+    if (!searchValue)
+      return iziToast.show({
+        title: "Помилка!",
+        message: "geeeceee",
+        position: "top",
+      });
 
     const getData = async () => {
       try {
         setLoading(true);
         const data = await getPhotos(searchValue, count);
+        setTotalPage(data.total_pages);
         setPhotos((prevPhotos) => [...prevPhotos, ...data.results]);
       } catch (error) {
         setError(error.message);
@@ -65,11 +73,13 @@ function App() {
           <LoadingSpinner />
         </p>
       )}
-      {!loading && photos.length > 0 && (
+
+      {count < totalPage && (
         <button onClick={() => setCount((prevCount) => prevCount + 1)}>
           Завантажити ще
         </button>
       )}
+
       <ImageModal
         isOpen={modalIsOpen}
         onClose={closeModal}
