@@ -1,6 +1,4 @@
 const ImageCard = ({ photos, onImageClick }) => {
-  console.log(photos);
-
   return (
     <>
       {photos.map((photo) => (

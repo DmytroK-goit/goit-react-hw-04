@@ -3,7 +3,8 @@ import getPhotos from "./components/apiService/foto";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
-import iziToast from "izitoast";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ImageModal from "./components/ImageModal/ImageModal";
 import "./App.css";
 
@@ -18,35 +19,32 @@ function App() {
   const [totalPage, setTotalPage] = useState(0);
 
   const onSubmit = (value) => {
+    if (!value) {
+      toast.info("Пошуковий запит не введений");
+      return;
+    }
     if (value !== searchValue) {
       setSearchValue(value);
       setPhotos([]);
       setCount(1);
       setTotalPage(0);
+      setError(null);
     }
   };
 
   useEffect(() => {
-    if (!searchValue)
-      return iziToast.show({
-        title: "Помилка!",
-        message: "geeeceee",
-        position: "top",
-      });
+    if (!searchValue) return;
 
     const getData = async () => {
       try {
         setLoading(true);
         const data = await getPhotos(searchValue, count);
         setTotalPage(data.total_pages);
+        toast.success("Успішно виконано!");
         setPhotos((prevPhotos) => [...prevPhotos, ...data.results]);
       } catch (error) {
         setError(error.message);
-        iziToast.error({
-          title: "Помилка!",
-          message: error.message,
-          position: "topLeft",
-        });
+        toast.error(`Сталася помилка: ${error.message}`);
       } finally {
         setLoading(false);
       }
@@ -84,6 +82,11 @@ function App() {
         isOpen={modalIsOpen}
         onClose={closeModal}
         imageUrl={selectedImage}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
       />
     </>
   );
