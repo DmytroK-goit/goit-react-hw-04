@@ -3,6 +3,7 @@ import getPhotos from "./components/apiService/foto";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageModal from "./components/ImageModal/ImageModal";
@@ -66,17 +67,9 @@ function App() {
     <>
       <SearchBar onSubmit={onSubmit} />
       <ImageGallery photos={photos} onImageClick={openModal} />
-      {loading && (
-        <p>
-          <LoadingSpinner />
-        </p>
-      )}
+      {loading && <LoadingSpinner />}
 
-      {count < totalPage && (
-        <button onClick={() => setCount((prevCount) => prevCount + 1)}>
-          Завантажити ще
-        </button>
-      )}
+      {count < totalPage && <LoadMoreBtn setCount={setCount} />}
 
       <ImageModal
         isOpen={modalIsOpen}

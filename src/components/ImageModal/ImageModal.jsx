@@ -1,5 +1,6 @@
-import { useState } from "react";
-import Modal from "react-modal"; // Переконайся, що імпортуєш компонент Modal
+import Modal from "react-modal";
+
+Modal.setAppElement("#root"); // Переконайся, що імпортуєш компонент Modal
 
 const ImageModal = ({ isOpen, onClose, imageUrl }) => {
   const customStyles = {
