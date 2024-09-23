@@ -22,6 +22,10 @@ function App() {
   const onSubmit = (value) => {
     if (!value) {
       toast.info("Пошуковий запит не введений");
+      setPhotos([]);
+      setCount(1);
+      setTotalPage(0);
+      setError(null);
       return;
     }
     if (value !== searchValue) {

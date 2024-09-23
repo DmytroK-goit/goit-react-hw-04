@@ -1,7 +1,9 @@
+import s from "./ImageCard.module.css";
+
 const ImageCard = ({ photo, onImageClick }) => {
   return (
     <>
-      <div>
+      <div className={s.img}>
         <img
           src={photo.urls.small_s3}
           alt={photo.alt_description}
