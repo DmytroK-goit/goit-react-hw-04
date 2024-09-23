@@ -40,7 +40,7 @@ function App() {
         setLoading(true);
         const data = await getPhotos(searchValue, count);
         setTotalPage(data.total_pages);
-        toast.success("Успішно виконано!");
+        toast.success(`Успішно виконано! Знайдено ${data.results.length}`);
         setPhotos((prevPhotos) => [...prevPhotos, ...data.results]);
       } catch (error) {
         setError(error.message);
